@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="th" translate="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="google" content="notranslate">
+<meta name="theme-color" content="#0a0804">
+<title>Pre-test · What Does "Professional" Mean?</title>
+<style>
+:root{
+  --bg1:#0a0804;--bg2:#1e1608;--bg3:#33240a;--ink:#fbf3dc;--muted:#d9c48a;--dim:#a8956a;
+  --gold:#d4af37;--gold2:#e9b93f;--champ:#f5e6a8;--copper:#d98e4a;--dark:#1a1204;
+  --ok:#7be0a0;--bad:#ff8f8f;
+  --card:rgba(212,175,55,.07);--line:rgba(212,175,55,.32);--r:22px;--shadow:0 22px 60px rgba(0,0,0,.55);
+  --font:system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Leelawadee UI",Thonburi,"Sukhumvit Set",Roboto,sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%}
+body{font-family:var(--font);color:var(--ink);background:var(--bg1);overflow-x:hidden;min-height:100vh;min-height:100dvh}
+body::before{content:"";position:fixed;inset:-20%;z-index:-2;
+  background:radial-gradient(40% 35% at 82% 12%,rgba(212,175,55,.34),transparent 70%),
+             radial-gradient(40% 36% at 12% 92%,rgba(245,230,168,.16),transparent 70%),
+             linear-gradient(135deg,var(--bg1),var(--bg2) 60%,var(--bg3));
+  animation:drift 24s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(-2%,2%) rotate(2deg)}}
+#fx,#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
+#fx{z-index:-1}#confetti{z-index:60}
+button{font-family:inherit;cursor:pointer}
+.screen{display:none;min-height:100vh;min-height:100dvh;padding:max(18px,env(safe-area-inset-top)) 16px 48px}
+.screen.active{display:block;animation:scrIn .55s cubic-bezier(.2,.8,.2,1)}
+@keyframes scrIn{from{opacity:0;transform:translateY(18px) scale(.985);filter:blur(6px)}}
+.wrap{max-width:760px;margin:0 auto}
+.glass{background:var(--card);border:1.5px solid var(--line);border-radius:var(--r);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow)}
+.gold-text{background:linear-gradient(100deg,#f9edb8,#e9b93f 30%,#b8862b 50%,#f5e6a8 70%,#e9b93f);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 7s linear infinite}
+@keyframes shine{to{background-position:250% 0}}
+.btn{border:0;border-radius:16px;padding:14px 22px;font-size:17px;font-weight:800;color:var(--dark);
+  background:linear-gradient(135deg,var(--champ),var(--gold) 55%,#b8862b);box-shadow:0 10px 30px rgba(212,175,55,.35);
+  transition:transform .15s,box-shadow .2s,filter .2s;position:relative;overflow:hidden}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(212,175,55,.5)}
+.btn:active{transform:scale(.97)}
+.btn[disabled]{filter:grayscale(1) brightness(.55);cursor:not-allowed;transform:none;box-shadow:none}
+.btn.ghost{background:rgba(212,175,55,.08);color:var(--ink);box-shadow:none;border:1.5px solid var(--line)}
+.btn.small{padding:9px 14px;font-size:14px;border-radius:12px}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-120%);transition:transform .7s}
+.btn:hover::after{transform:translateX(120%)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;font-size:13px;font-weight:800;background:rgba(212,175,55,.1);border:1px solid var(--line);color:var(--muted)}
+.muted{color:var(--muted)}.dim{color:var(--dim)}
+input,select{font-family:inherit;font-size:17px;color:var(--ink);background:rgba(0,0,0,.28);border:1.5px solid var(--line);border-radius:14px;padding:13px 14px;width:100%;outline:none;transition:border .2s,box-shadow .2s}
+input::placeholder{color:#8d7c55}
+input:focus,select:focus{border-color:var(--gold2);box-shadow:0 0 0 4px rgba(212,175,55,.2)}
+input.err,select.err{border-color:var(--bad);box-shadow:0 0 0 4px rgba(255,143,143,.18)}
+select option{color:#111;background:#fff}
+label.lbl{display:block;font-weight:800;margin:14px 0 8px;color:var(--muted);font-size:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:520px){.grid2{grid-template-columns:1fr}}
+footer.by{text-align:center;color:var(--dim);font-size:13px;margin-top:26px}
+
+/* hero */
+.hero{text-align:center;padding:30px 6px 6px}
+.crest{width:104px;height:104px;margin:0 auto 18px;position:relative;display:grid;place-items:center}
+.crest::before,.crest::after{content:"";position:absolute;inset:0;border:2px solid var(--gold);transform:rotate(45deg);border-radius:18px;animation:spin 14s linear infinite}
+.crest::after{inset:12px;border-color:rgba(245,230,168,.5);animation-direction:reverse;animation-duration:10s}
+@keyframes spin{to{transform:rotate(405deg)}}
+.crest span{font-size:46px;filter:drop-shadow(0 0 16px rgba(212,175,55,.8));animation:pulse 2.6s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.1)}}
+.badge{display:inline-flex;gap:8px;align-items:center;padding:7px 16px;border-radius:999px;background:linear-gradient(90deg,var(--champ),var(--gold));color:var(--dark);font-weight:900;font-size:13px;letter-spacing:2px}
+.hero h1{font-size:clamp(28px,6vw,52px);font-weight:900;margin:16px 0 6px;line-height:1.12;letter-spacing:-.5px}
+.sub{font-size:clamp(15px,2.6vw,18px);color:var(--muted);margin:10px 0 0;line-height:1.6}
+.rule{width:120px;height:3px;border-radius:3px;margin:16px auto 0;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.panel{padding:24px;margin-top:20px;position:relative}
+.panel::before{content:"";position:absolute;inset:8px;border:1px solid rgba(245,230,168,.16);border-radius:16px;pointer-events:none}
+.facts{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px}
+.msg{min-height:22px;margin-top:10px;color:var(--bad);font-weight:700;font-size:14px}
+
+/* quiz */
+#sc-quiz{padding-top:0}
+.top{position:sticky;top:0;z-index:20;padding:max(10px,env(safe-area-inset-top)) 16px 10px;background:linear-gradient(180deg,rgba(10,8,4,.96),rgba(10,8,4,.8));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);margin:0 -16px}
+.top .row{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.top .t{font-weight:900;font-size:15px;flex:1;min-width:150px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.progress{height:6px;border-radius:9px;background:rgba(212,175,55,.14);max-width:1280px;margin:10px auto 0;overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--champ),var(--gold),var(--copper));transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.body{max-width:1280px;margin:16px auto 0;display:grid;grid-template-columns:1fr;gap:16px}
+.passage{padding:20px 22px;overflow:auto}
+.passage h3{margin:0;font-size:19px}
+.passage p{line-height:1.85;font-size:var(--pfs,16.5px);margin:12px 0;color:#f3e9cc;border-radius:10px;padding:2px 6px;transition:background .4s,box-shadow .4s}
+.passage p b{color:var(--gold2);font-size:12px;margin-right:6px;vertical-align:2px}
+.passage p.hl{background:rgba(212,175,55,.2);box-shadow:0 0 0 1.5px var(--gold) inset}
+.ptools{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+@media(min-width:980px){.body{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}.passage{position:sticky;top:96px;max-height:calc(100vh - 116px)}.ptoggle{display:none!important}.passage .close{display:none}}
+@media(max-width:979px){
+  .passage{position:fixed;left:8px;right:8px;bottom:8px;top:16vh;z-index:40;transform:translateY(110%);transition:transform .45s cubic-bezier(.2,.8,.2,1);background:rgba(20,15,6,.98)}
+  .passage.open{transform:none}
+}
+.ptoggle{border-radius:999px;padding:8px 14px;font-size:14px}
+@media(max-width:560px){.opt .mark i{display:none}.opt{padding:13px 12px;gap:10px}.top .t{flex-basis:100%}}
+.opt .mark i{font-style:normal}
+.qcard{padding:24px;position:relative}
+.qcard.enter{animation:qIn .5s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes qIn{from{opacity:0;transform:translateX(40px) rotateY(-10deg)}}
+.qmeta{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.qnum{font-weight:900;color:var(--muted);letter-spacing:1px}
+.diff{font-size:12.5px;font-weight:900;padding:5px 12px;border-radius:999px;letter-spacing:1px;color:var(--dark)}
+.diff.E{background:var(--champ)}.diff.M{background:var(--gold2)}.diff.H{background:var(--copper)}
+.qtext{font-size:clamp(18px,2.3vw,21px);line-height:1.6;font-weight:800;margin:4px 0 18px}
+.opts{display:grid;gap:12px}
+.opt{display:flex;align-items:center;gap:14px;text-align:left;padding:15px 16px;border-radius:16px;border:1.5px solid var(--line);background:rgba(0,0,0,.22);color:var(--ink);font-size:16.5px;line-height:1.5;transition:all .18s}
+.opt:not([disabled]):hover{border-color:var(--gold2);background:rgba(212,175,55,.12);transform:translateX(4px)}
+.opt .l{flex:none;width:36px;height:36px;border-radius:11px;display:grid;place-items:center;font-weight:900;background:linear-gradient(135deg,var(--champ),var(--gold));color:var(--dark)}
+.opt[disabled]{cursor:default}
+.opt.right{border-color:var(--ok);background:rgba(123,224,160,.14);box-shadow:0 0 0 4px rgba(123,224,160,.12);animation:pop .4s}
+.opt.right .l{background:var(--ok)}
+.opt.wrong{border-color:var(--bad);background:rgba(255,143,143,.12);animation:shake .4s}
+.opt.wrong .l{background:var(--bad)}
+.opt.fade{opacity:.5}
+.opt .mark{margin-left:auto;font-weight:900;font-size:14px;white-space:nowrap}
+@keyframes pop{40%{transform:scale(1.03)}}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.fb{display:none;margin-top:16px;padding:16px 18px;border-radius:16px;border:1.5px solid var(--line);background:rgba(0,0,0,.3);animation:scrIn .4s}
+.fb.show{display:block}
+.fb h4{margin:0 0 6px;font-size:17px}
+.fb.ok h4{color:var(--ok)}.fb.no h4{color:var(--bad)}
+.fb p{margin:0;line-height:1.7;color:#f3e9cc;font-size:15.5px}
+.qnav{display:flex;gap:10px;margin-top:18px;justify-content:flex-end}
+
+/* result */
+.res{max-width:720px;margin:0 auto;text-align:center}
+.ring{position:relative;width:230px;height:230px;margin:10px auto}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring .num{position:absolute;inset:0;display:grid;place-items:center;align-content:center}
+.ring .num b{font-size:66px;font-weight:900;line-height:1}
+.ring .num span{color:var(--muted);font-weight:800}
+.stamp{display:inline-block;font-size:26px;font-weight:900;letter-spacing:3px;padding:8px 22px;border:4px solid;border-radius:14px;transform:rotate(-7deg) scale(3);opacity:0;animation:stamp .6s .9s cubic-bezier(.3,1.6,.4,1) forwards}
+.stamp.a{color:var(--champ)}.stamp.b{color:var(--gold2)}.stamp.c{color:var(--copper)}
+@keyframes stamp{to{opacity:1;transform:rotate(-7deg) scale(1)}}
+.cap{margin-top:22px;padding:24px;text-align:left;border-radius:26px;background:linear-gradient(150deg,rgba(212,175,55,.22),rgba(0,0,0,.25) 60%,rgba(245,230,168,.1));border:2px solid rgba(212,175,55,.6);box-shadow:var(--shadow);position:relative;overflow:hidden}
+.cap::before{content:"";position:absolute;inset:-40%;background:conic-gradient(from 0deg,transparent,rgba(245,230,168,.1),transparent 30%);animation:spin2 12s linear infinite}
+@keyframes spin2{to{transform:rotate(360deg)}}
+.cap>*{position:relative}
+.cap-head{display:flex;gap:14px;align-items:center}
+.avatar{width:70px;height:70px;border-radius:20px;display:grid;place-items:center;font-weight:900;font-size:30px;background:linear-gradient(135deg,var(--champ),var(--gold));color:var(--dark);flex:none}
+.cap-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.cap-grid div{background:rgba(0,0,0,.3);border-radius:14px;padding:10px 12px}
+.cap-grid small{display:block;color:var(--muted);font-size:12px}
+.cap-grid b{font-size:17px}
+@media(max-width:520px){.cap-grid{grid-template-columns:1fr}}
+.acts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+.review{margin-top:24px;text-align:left}
+.review h3{margin:0 0 10px}
+.rv{padding:14px 16px;border-radius:16px;border:1.5px solid var(--line);background:rgba(0,0,0,.25);margin-top:10px}
+.rv .q{font-weight:800;line-height:1.55}
+.rv .a{margin-top:6px;font-size:15px;line-height:1.6}
+.rv .a.y{color:var(--bad)}.rv .a.c{color:var(--ok)}
+.rv .e{margin-top:6px;color:#e8dcb8;font-size:14.5px;line-height:1.65}
+
+.overlay{position:fixed;inset:0;z-index:80;display:none;place-items:center;padding:18px;background:rgba(5,4,2,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.overlay.open{display:grid;animation:fade .25s}
+@keyframes fade{from{opacity:0}}
+.modal{width:min(520px,100%);padding:26px;text-align:center;max-height:90vh;overflow:auto;background:rgba(24,18,7,.97)}
+.modal h3{margin:8px 0;font-size:22px}
+.modal .mb{color:#f3e9cc;line-height:1.65}
+.modal .mbtns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}}
+</style>
+</head>
+<body class="notranslate">
+<canvas id="fx"></canvas>
+<canvas id="confetti"></canvas>
+
+<!-- ============ REGISTER ============ -->
+<section id="sc-reg" class="screen active">
+  <div class="wrap">
+    <div class="hero">
+      <div class="crest"><span>📜</span></div>
+      <span class="badge">PRE-TEST · ม.6</span>
+      <h1><span class="gold-text">What Does "Professional" Mean?</span></h1>
+      <p class="sub">แบบทดสอบก่อนสอบจริง · Reading Comprehension<br>Basic English Course</p>
+      <div class="rule"></div>
+      <div class="facts"><span class="chip">📝 30 ข้อ</span><span class="chip">💡 มีเฉลยและคำอธิบายทุกข้อ</span><span class="chip">🔁 ทำซ้ำได้ไม่จำกัด</span></div>
+    </div>
+    <div class="glass panel">
+      <div class="grid2">
+        <div><label class="lbl" for="fFirst">ชื่อ</label><input id="fFirst" autocomplete="off" maxlength="40" placeholder="เช่น สมชาย"></div>
+        <div><label class="lbl" for="fLast">นามสกุล</label><input id="fLast" autocomplete="off" maxlength="40" placeholder="เช่น ใจดี"></div>
+      </div>
+      <div class="grid2">
+        <div><label class="lbl" for="fCls">ชั้น</label><select id="fCls"><option value="">— เลือกชั้น —</option><option>ม.6/1</option><option>ม.6/2</option><option>ม.6/3</option></select></div>
+        <div><label class="lbl" for="fNo">เลขที่</label><input id="fNo" type="number" inputmode="numeric" min="1" max="50" placeholder="1–50"></div>
+      </div>
+      <div class="msg" id="regMsg"></div>
+      <button class="btn" id="startBtn" style="width:100%;margin-top:6px">เริ่มทำ Pre-test ✨</button>
+      <p class="dim" style="font-size:13px;text-align:center;margin:14px 0 0">คะแนนชุดนี้เป็นการฝึก ไม่นับเป็นคะแนนสอบจริง · ทำเสร็จแล้วแคปหน้าจอผลส่งครูโอ๊ต</p>
+    </div>
+    <footer class="by">Basic English Course · By T.OAT · Thanakhan-Oomsin School</footer>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section id="sc-quiz" class="screen">
+  <div class="top">
+    <div class="row">
+      <div class="t">PRE-TEST · What Does "Professional" Mean?</div>
+      <button class="btn ptoggle" id="pOpen">📖 อ่านบทความ</button>
+      <span class="chip" id="scoreChip">⭐ 0</span>
+      <span class="chip" id="countChip">1 / 30</span>
+    </div>
+    <div class="progress"><i id="bar"></i></div>
+  </div>
+  <div class="body" translate="no">
+    <aside class="glass passage" id="passage">
+      <div class="ptools">
+        <h3>📖 What Does "Professional" Mean?</h3>
+        <div style="display:flex;gap:6px">
+          <button class="btn ghost small" id="fsMinus">A−</button>
+          <button class="btn ghost small" id="fsPlus">A+</button>
+          <button class="btn ghost small close" id="pClose">✕</button>
+        </div>
+      </div>
+      <div id="passageBody"></div>
+    </aside>
+    <main>
+      <div class="glass qcard" id="qcard">
+        <div class="qmeta"><span class="qnum" id="qNum"></span><span class="diff" id="qDiff"></span></div>
+        <div class="qtext" id="qText"></div>
+        <div class="opts" id="opts"></div>
+        <div class="fb" id="fb"><h4 id="fbTitle"></h4><p id="fbText"></p></div>
+        <div class="qnav"><button class="btn" id="nextBtn" disabled>ข้อถัดไป ➜</button></div>
+      </div>
+    </main>
+  </div>
+</section>
+
+<!-- ============ RESULT ============ -->
+<section id="sc-res" class="screen">
+  <div class="res">
+    <div class="hero" style="padding-bottom:0"><span class="badge">ผล PRE-TEST</span></div>
+    <div class="ring">
+      <svg viewBox="0 0 120 120"><defs><linearGradient id="rg" x1="0" x2="1"><stop offset="0" stop-color="#f5e6a8"/><stop offset=".5" stop-color="#d4af37"/><stop offset="1" stop-color="#d98e4a"/></linearGradient></defs>
+        <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(212,175,55,.16)" stroke-width="10"/>
+        <circle id="arc" cx="60" cy="60" r="52" fill="none" stroke="url(#rg)" stroke-width="10" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7" style="transition:stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1)"/></svg>
+      <div class="num"><b id="resScore">0</b><span id="resTotal">/ 30</span></div>
+    </div>
+    <div><span class="stamp" id="stamp"></span></div>
+    <p class="sub" id="resMsg"></p>
+    <div class="cap" id="cap"></div>
+    <div class="acts">
+      <button class="btn" id="saveBtn">💾 บันทึกเป็นรูปภาพ</button>
+      <button class="btn ghost" id="againBtn">🔁 ทำอีกครั้ง</button>
+      <button class="btn ghost" id="homeBtn">🏠 หน้าแรก</button>
+    </div>
+    <p class="dim" style="font-size:13px;margin-top:14px">📸 แคปหน้าจอนี้ หรือกด “บันทึกเป็นรูปภาพ” แล้วส่งให้ครูโอ๊ต</p>
+    <div class="review" id="review"></div>
+    <footer class="by">Basic English Course · By T.OAT · Thanakhan-Oomsin School</footer>
+  </div>
+</section>
+
+<div id="modal" class="overlay"><div class="glass modal" id="modalCard"></div></div>
+
+<script>
+'use strict';
+const ITEMS = [{"id":"x01","d":"E","q":"According to the passage, in which countries is punctuality taken very seriously?","o":["Germany and Switzerland","Brazil and Mexico","Japan and Sweden","The United States and Israel"],"p":2,"ex":"ย่อหน้าที่ 2 เขียนว่า “In countries like Germany and Switzerland, punctuality is taken very seriously.” (punctuality = การตรงต่อเวลา) ส่วนบราซิลและเม็กซิโกยืดหยุ่นเรื่องเวลามากกว่า"},{"id":"x03","d":"E","q":"What might a tech company in Silicon Valley welcome employees to wear?","o":["T-shirts and sneakers","Formal business suits","School uniforms","Traditional national dress"],"p":6,"ex":"ย่อหน้าที่ 6 บอกว่าบริษัทเทคในซิลิคอนแวลลีย์ “might welcome t-shirts and sneakers” ส่วนชุดสูททางการเป็นของบริษัทการเงินในลอนดอนหรือโตเกียว"},{"id":"x04","d":"E","q":"In which country do managers often use the \"sandwich method\" for feedback?","o":["The United States","The Netherlands","Israel","Sweden"],"p":9,"ex":"ย่อหน้าที่ 9: ผู้จัดการในสหรัฐฯ ใช้ “sandwich method” คือซ่อนคำติไว้ระหว่างคำชม 2 ครั้ง ส่วนเนเธอร์แลนด์และอิสราเอลพูดตรง ๆ"},{"id":"x06","d":"E","q":"Erin Meyer is an expert on ______.","o":["cross-cultural management","the history of clocks","fashion and dress codes","financial firms in London"],"p":12,"ex":"ย่อหน้าที่ 12 เขียนว่า “Erin Meyer, an expert on cross-cultural management” วลีระหว่างจุลภาคคือคำขยายบอกว่าเธอเป็นใคร"},{"id":"x10","d":"E","q":"In Mexico, Brazil, and the Middle East, colleagues might spend significant time ______ before getting down to business.","o":["socializing","writing reports","checking schedules","changing clothes"],"p":10,"ex":"ย่อหน้าที่ 10: “spend significant time socializing before getting down to business” (get down to business = เริ่มทำงานจริงจัง)"},{"id":"x11","d":"M","q":"What is the main idea of the passage?","o":["Ideas about professionalism differ across cultures, so we should adapt to the people we work with.","German workers are the most professional people in the world.","Being late for a meeting is always unprofessional.","Dress codes are the most important difference between workplaces."],"p":11,"ex":"ใจความสำคัญต้องครอบคลุมทั้งเรื่อง: ย่อหน้าแรกบอกว่าความคาดหวัง “vary deeply across cultures” และย่อหน้าที่ 11 สรุปว่า “We must adapt our behavior” ระวังตัวเลือกที่มีคำสุดโต่ง เช่น always, the most"},{"id":"x13","d":"M","q":"Why might workplaces in Brazil and Mexico be flexible about meeting times?","o":["Building personal relationships often matters more than following a rigid clock.","Employees there have too many meetings every day.","Managers there do not care about their work.","The law in those countries requires flexible meetings."],"p":2,"ex":"ย่อหน้าที่ 2: “Building personal relationships often takes priority over following a rigid clock.” (takes priority over = สำคัญกว่า) ตัวเลือกที่ถูกเป็นการถอดความประโยคนี้"},{"id":"x15","d":"M","q":"\"People prefer to read between the lines to understand the true meaning.\" What does \"read between the lines\" mean?","o":["Understand the hidden or unspoken meaning","Read the text very slowly","Skip the difficult parts","Read every line out loud"],"p":5,"ex":"read between the lines เป็นสำนวน = เข้าใจความหมายแฝงที่ไม่ได้พูดออกมา ดูคำใบ้ในย่อหน้าที่ 5: “unspoken messages”"},{"id":"x16","d":"M","q":"What does the word \"polychronic\" describe?","o":["People who see time as flexible and interconnected","People who always follow strict schedules","People who arrive early to every meeting","People who dislike working in teams"],"p":3,"ex":"ย่อหน้าที่ 3 ให้นิยามไว้ในประโยค: “people who see time as flexible and interconnected as ‘polychronic.’” (poly- = หลาย, chron- = เวลา)"},{"id":"x19","d":"M","q":"\"Building personal relationships often takes priority over following a rigid clock.\" The word \"rigid\" is closest in meaning to ______.","o":["strict and not flexible","broken","expensive","relaxed and easy"],"p":2,"ex":"rigid = เข้มงวด ตายตัว ไม่ยืดหยุ่น ประโยคก่อนหน้าพูดถึง “more flexibility” ดังนั้น rigid clock จึงตรงข้ามกับความยืดหยุ่น"},{"id":"x21","d":"H","q":"In the first paragraph, \"These invisible differences\" refers to ______.","o":["different cultural expectations about time, communication, and teamwork","differences in salary between countries","differences between company logos","differences in the languages people speak"],"p":1,"ex":"คำว่า These ชี้กลับไปประโยคก่อนหน้า: “expectations about time, communication, and teamwork vary deeply across cultures.” เจอ this/these ให้ย้อนอ่านประโยคก่อนหน้า"},{"id":"x22","d":"H","q":"A German manager works with a team in Brazil. Based on the passage, what is the most likely misunderstanding?","o":["The manager may see flexible meeting times as unreliable, while the team sees them as normal and relationship-focused.","The manager and the team will have exactly the same view of time.","The team will think the manager is too relaxed about schedules.","The manager will use the sandwich method and confuse the team."],"p":2,"ex":"ต้องนำข้อมูลไปประยุกต์: ในเยอรมนี การตรงเวลา = ความน่าเชื่อถือ ส่วนบราซิลยืดหยุ่นเรื่องเวลาเพราะเน้นความสัมพันธ์ (ย่อหน้าที่ 2) จึงมองสิ่งเดียวกันต่างกัน"},{"id":"x24","d":"H","q":"What is the author’s attitude toward cultural patterns?","o":["They are useful guides, but not fixed rules.","They are unbreakable rules everyone must follow.","They are useless and should be ignored.","They only matter in Germany and Japan."],"p":11,"ex":"ย่อหน้าที่ 11: “useful guides rather than fixed, unbreakable rules” โครงสร้าง A rather than B = เป็น A มากกว่าจะเป็น B"},{"id":"x26","d":"H","q":"\"A manager will state exactly what went wrong without trying to soften the blow.\" What does \"soften the blow\" mean?","o":["Make bad news less painful to hear","Hit something harder","End the meeting early","Hide the mistake forever"],"p":9,"ex":"soften the blow เป็นสำนวน = ทำให้เรื่องไม่ดีฟังแล้วเจ็บน้อยลง ในย่อหน้าที่ 9 ผู้จัดการพูด “directly and bluntly” จึง “ไม่” ถนอมน้ำใจ"},{"id":"x28","d":"H","q":"Which advice would the author most likely give to someone starting an international job?","o":["Observe carefully, listen actively, ask questions, and discuss expectations.","Always follow the workplace rules of your own country.","Avoid working with colleagues from different cultures.","Always use the sandwich method when giving feedback."],"p":12,"ex":"ย่อหน้าที่ 12 รวมคำแนะนำไว้: observe carefully, actively listen, asking clarifying questions, openly discussing expectations"},{"id":"n1","d":"E","q":"According to the passage, what might traditional financial firms in London or Tokyo still expect employees to wear?","o":["Formal business suits","T-shirts and sneakers","Sports uniforms","Casual jeans"],"p":6,"ex":"ย่อหน้าที่ 6: “traditional financial firms in London or Tokyo might still expect formal business suits.” ส่วนเสื้อยืดและรองเท้าผ้าใบเป็นของบริษัทเทคในซิลิคอนแวลลีย์"},{"id":"n2","d":"E","q":"In some Middle Eastern and Asian businesses, how are decisions made?","o":["Rapidly, at the very top of the hierarchy","Slowly, after everyone agrees","By a vote of all employees","By the newest team members"],"p":8,"ex":"ย่อหน้าที่ 8: “decisions are made rapidly at the very top of the hierarchy.” (hierarchy = ลำดับชั้นการบังคับบัญชา) ส่วนการรอให้ทุกคนเห็นพ้องเป็นแบบของสวีเดน"},{"id":"n3","d":"M","q":"What do many American workplaces encourage employees to do?","o":["Show individual initiative and speak confidently about their accomplishments","Stay modest and avoid talking about their own success","Wait for the group to decide everything together","Keep silent during meetings to protect harmony"],"p":7,"ex":"ย่อหน้าที่ 7: “encourage employees to show individual initiative and speak confidently about personal accomplishments.” ส่วนความถ่อมตนและความกลมเกลียวเป็นค่านิยมของที่ทำงานบางแห่งในญี่ปุ่น"},{"id":"n4","d":"M","q":"“Scandinavian countries like Sweden prefer a consensus-based approach.” The word “consensus” is closest in meaning to ______.","o":["general agreement among the group","a quick order from the boss","a strong argument","a written company rule"],"p":8,"ex":"consensus = ความเห็นพ้องต้องกันของกลุ่ม คำใบ้อยู่ในประโยคถัดไปของย่อหน้าที่ 8: “Everyone’s opinion is heard … ensures team agreement”"},{"id":"n5","d":"H","q":"Hall observed that polychronic people “seldom experience time as wasted.” What can be inferred from this?","o":["They are unlikely to feel upset if a meeting starts late because people are talking.","They always arrive early so that no time is lost.","They believe that long conversations are a waste of time.","They prefer strict schedules to personal relationships."],"p":3,"ex":"ต้องอนุมาน: คน polychronic มองเวลาแบบยืดหยุ่น และ “แทบไม่รู้สึกว่าเสียเวลา” (seldom = แทบไม่) จึงไม่น่าจะหงุดหงิดเมื่อประชุมเริ่มช้าเพราะการพูดคุย ตัวเลือกอื่นเป็นลักษณะของคนที่เคร่งเรื่องเวลา"},{"id":"n6","d":"E","q":"According to the first paragraph, professionalism is often treated as ______.","o":["a universal standard","a personal hobby","a legal requirement","a new invention"],"p":1,"ex":"ย่อหน้าที่ 1: “Professionalism is often treated as a universal standard” (universal standard = มาตรฐานสากลที่ใช้เหมือนกันทุกที่) แต่ผู้เขียนบอกต่อว่าความคาดหวังจริง ๆ ต่างกันตามวัฒนธรรม"},{"id":"n7","d":"E","q":"What is Edward T. Hall’s profession?","o":["An anthropologist","A business manager","A fashion designer","A language teacher"],"p":3,"ex":"ย่อหน้าที่ 3: “American anthropologist Edward T. Hall” (anthropologist = นักมานุษยวิทยา ผู้ศึกษามนุษย์และวัฒนธรรม)"},{"id":"n8","d":"E","q":"In many Latin American workplaces, communication is expected to be ______.","o":["warm and personal","cold and formal","short and written","fast and silent"],"p":5,"ex":"ย่อหน้าที่ 5 (ท้ายย่อหน้า): “communication is expected to be warm and personal.” และคำวิจารณ์จะพูดอย่างระมัดระวังเพื่อรักษาความสัมพันธ์"},{"id":"n9","d":"H","q":"A new employee from Sweden joins a company where the boss decides everything quickly and alone. Based on the passage, how might the employee feel at first?","o":["Surprised, because they expect everyone’s opinion to be heard before a decision","Comfortable, because companies in Sweden work in the same way","Pleased, because decisions in Sweden are never discussed","Relaxed, because Swedish managers always use the sandwich method"],"p":8,"ex":"ต้องนำข้อมูลไปประยุกต์: ย่อหน้าที่ 8 บอกว่าสวีเดนใช้แบบ consensus คือ “Everyone’s opinion is heard” จึงน่าจะแปลกใจเมื่อเจอการตัดสินใจจากบนลงล่างอย่างรวดเร็ว ส่วน sandwich method เป็นของสหรัฐฯ"},{"id":"n10","d":"M","q":"In indirect cultures, direct disagreement can sometimes be seen as ______.","o":["a threat to group harmony","a productive debate","a sign of good teamwork","a way to show respect"],"p":5,"ex":"ย่อหน้าที่ 5: “direct disagreement can sometimes be seen as a threat to group harmony.” ระวังสับสนกับวัฒนธรรมแบบตรง (ย่อหน้าที่ 4) ที่มองว่าเป็น productive debate"},{"id":"n11","d":"M","q":"According to the passage, what is an advantage of the consensus-based approach?","o":["It ensures team agreement before moving forward.","It is the fastest way to make a decision.","Only the manager needs to speak.","It means the team never has to meet."],"p":8,"ex":"ย่อหน้าที่ 8: “which takes longer but ensures team agreement before moving forward.” ข้อดีคือทั้งทีมเห็นพ้องกัน ข้อเสียคือใช้เวลานานกว่า (but เชื่อมข้อเสียกับข้อดี)"},{"id":"n12","d":"M","q":"“Dress codes and workplace formality also shift drastically across borders.” The word “drastically” is closest in meaning to ______.","o":["greatly","slowly","rarely","secretly"],"p":6,"ex":"drastically = อย่างมาก อย่างรุนแรง ดูตัวอย่างในย่อหน้าที่ 6: เสื้อยืดกับรองเท้าผ้าใบ เทียบกับชุดสูททางการ ซึ่งต่างกันมาก"},{"id":"n13","d":"M","q":"How do some German workplaces approach teamwork?","o":["By combining individual responsibility with structured cooperation","By socializing for a long time before working","By letting the manager do all the work","By avoiding cooperation completely"],"p":10,"ex":"ย่อหน้าที่ 10: “combining individual responsibility with structured cooperation.” ส่วนการใช้เวลาพูดคุยทำความรู้จักกันก่อนเป็นของเม็กซิโก บราซิล และตะวันออกกลาง"},{"id":"n14","d":"H","q":"What is the main purpose of the first paragraph?","o":["To introduce the idea that professionalism depends on culture, using an everyday example","To explain the rules of business meetings in Germany","To describe Edward T. Hall’s research in detail","To give advice about what to wear at work"],"p":1,"ex":"ย่อหน้าแรกเปิดด้วยตัวอย่างใกล้ตัว (มาประชุมสาย 5 นาที) แล้วบอกว่าคำตอบ “may depend on where you are in the world” เพื่อนำเข้าสู่ประเด็นหลัก ตัวเลือกอื่นเป็นเนื้อหาของย่อหน้าหลัง ๆ"},{"id":"n15","d":"H","q":"“They maintain clear, professional boundaries between work and private life.” The word “They” refers to ______.","o":["some German workplaces","colleagues in Mexico and Brazil","managers in the Middle East","polychronic people"],"p":10,"ex":"คำถามแบบ reference: They ชี้กลับไปที่ประธานของประโยคก่อนหน้าในย่อหน้าที่ 10 คือ “Some German workplaces” ไม่ใช่เม็กซิโกหรือบราซิลที่กล่าวถึงก่อนหน้านั้น"}];
+const PASSAGE = ["Imagine arriving five minutes late for a meeting. Does that make you unprofessional? The answer may depend on where you are in the world. Professionalism is often treated as a universal standard, but expectations about time, communication, and teamwork vary deeply across cultures. These invisible differences can easily lead to misunderstandings.", "In countries like Germany and Switzerland, punctuality is taken very seriously. Arriving on time shows reliability and respect for others, and business meetings tend to follow strict schedules. In contrast, workplaces in Brazil and Mexico may offer more flexibility around meeting times. Building personal relationships often takes priority over following a rigid clock.", "American anthropologist Edward T. Hall studied these cultural attitudes toward time. He described people who see time as flexible and interconnected as \"polychronic.\" Hall observed that polychronic people seldom experience time as wasted. Therefore, what looks inefficient to one colleague might seem completely respectful to another.", "Communication styles are another major area of cultural difference. Workplaces in the United States and Germany often value clear, direct, and explicit communication. In these direct cultures, colleagues may openly disagree during a meeting. This is seen as a productive debate, without intending any personal attack.", "However, in Japan and many other Asian countries, communication is often much more indirect. Tone of voice, silence, and context carry important, unspoken messages. In these indirect cultures, direct disagreement can sometimes be seen as a threat to group harmony. People prefer to read between the lines to understand the true meaning. In many Latin American workplaces, communication is expected to be warm and personal. Criticism is usually expressed very carefully to protect valuable relationships.", "Dress codes and workplace formality also shift drastically across borders. For example, a tech company in Silicon Valley might welcome t-shirts and sneakers. Meanwhile, traditional financial firms in London or Tokyo might still expect formal business suits. In Mexico, using formal titles communicates respect, especially during first introductions.", "Ideas about achievement and motivation also differ wildly. Many American workplaces encourage employees to show individual initiative and speak confidently about personal accomplishments. On the other hand, in some Japanese workplaces, greater importance is traditionally given to group success. Consensus, modesty, and team harmony are valued over individual pride.", "Decision-making processes highlight another cultural gap. In some Middle Eastern and Asian businesses, decisions are made rapidly at the very top of the hierarchy. In contrast, Scandinavian countries like Sweden prefer a consensus-based approach. Everyone’s opinion is heard, which takes longer but ensures team agreement before moving forward.", "The way managers give feedback can also cause confusion. In the United States, managers often use the \"sandwich method,\" hiding criticism between two positive compliments. In countries like the Netherlands or Israel, feedback is given directly and bluntly. A manager will state exactly what went wrong without trying to soften the blow.", "When it comes to teamwork, trust is built differently. In Mexico, Brazil, and the Middle East, colleagues might spend significant time socializing before getting down to business. Some German workplaces operate differently, combining individual responsibility with structured cooperation. They maintain clear, professional boundaries between work and private life.", "Of course, no single country has a uniform workplace culture. Industries, specific companies, different generations, and individual personalities all play a huge role. Because of this, cultural patterns should be viewed as useful guides rather than fixed, unbreakable rules. We must adapt our behavior to the specific people we work with.", "Erin Meyer, an expert on cross-cultural management, encourages professionals to observe carefully. We must actively listen to others when working across diverse cultures. By staying open-minded, asking clarifying questions, and openly discussing expectations, international colleagues can build deep trust and work together more effectively."];
+const TOTAL = ITEMS.length;
+const PASS = Math.round(TOTAL * 0.6);   // 60% เท่าเกณฑ์สอบจริง (18/30)
+const EXC = Math.round(TOTAL * 0.8);
+const DIFF_TH = { E: 'ง่าย', M: 'ปานกลาง', H: 'ยาก' };
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) { } }
+function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+function thTime(t) { try { return new Date(t).toLocaleString('th-TH', { timeZone: 'Asia/Bangkok', dateStyle: 'medium', timeStyle: 'short' }); } catch (e) { return new Date(t).toLocaleString(); } }
+
+const S = { stu: null, order: [], opt: {}, idx: 0, score: 0, picks: {}, answered: false, attempt: 0, doneAt: 0 };
+
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const el = $('#sc-' + id); void el.offsetWidth; el.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+/* ---------- gold dust background ---------- */
+(function () {
+  const c = $('#fx'), x = c.getContext && c.getContext('2d');
+  if (!x) return;
+  let W, H; const dpr = Math.min(2, window.devicePixelRatio || 1);
+  function size() { W = c.width = innerWidth * dpr; H = c.height = innerHeight * dpr; }
+  size(); addEventListener('resize', size);
+  const N = Math.min(60, Math.round(innerWidth / 22)), ps = [];
+  for (let i = 0; i < N; i++) ps.push({ x: Math.random(), y: Math.random(), r: (Math.random() * 1.8 + .5) * dpr, v: Math.random() * .00035 + .00012, s: Math.random() * 6.28, a: Math.random() * .6 + .25 });
+  (function loop(t) {
+    if (!document.hidden) {
+      x.clearRect(0, 0, W, H);
+      for (const p of ps) {
+        p.y -= p.v; if (p.y < -0.02) { p.y = 1.02; p.x = Math.random(); }
+        const px = (p.x + Math.sin(t / 2400 + p.s) * .012) * W, py = p.y * H;
+        x.globalAlpha = p.a * (0.6 + 0.4 * Math.sin(t / 700 + p.s));
+        x.fillStyle = '#f5e6a8'; x.beginPath(); x.arc(px, py, p.r, 0, 6.283); x.fill();
+      }
+      x.globalAlpha = 1;
+    }
+    requestAnimationFrame(loop);
+  })(0);
+})();
+
+function confetti() {
+  const c = $('#confetti'), x = c.getContext && c.getContext('2d');
+  if (!x) return;
+  c.width = innerWidth; c.height = innerHeight;
+  const cols = ['#f5e6a8', '#d4af37', '#e9b93f', '#d98e4a', '#fff7d6'], ps = [];
+  for (let i = 0; i < 200; i++) ps.push({ x: innerWidth / 2 + (Math.random() - .5) * 200, y: innerHeight * .35, vx: (Math.random() - .5) * 16, vy: -Math.random() * 16 - 4, s: Math.random() * 8 + 4, a: Math.random() * 6, va: (Math.random() - .5) * .3, c: cols[i % cols.length] });
+  const end = performance.now() + 3200;
+  (function f(t) {
+    x.clearRect(0, 0, c.width, c.height);
+    for (const p of ps) { p.vy += .35; p.vx *= .99; p.x += p.vx; p.y += p.vy; p.a += p.va; x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.c; x.fillRect(-p.s / 2, -p.s / 4, p.s, p.s / 2); x.restore(); }
+    if (t < end) requestAnimationFrame(f); else x.clearRect(0, 0, c.width, c.height);
+  })(performance.now());
+}
+
+let AC = null;
+function beep(fs, dur, type) {
+  try {
+    AC = AC || new (window.AudioContext || window.webkitAudioContext)();
+    let t = AC.currentTime;
+    fs.forEach(f => { const o = AC.createOscillator(), g = AC.createGain(); o.type = type || 'sine'; o.frequency.value = f; g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.16, t + .02); g.gain.exponentialRampToValueAtTime(.0001, t + dur); o.connect(g); g.connect(AC.destination); o.start(t); o.stop(t + dur + .02); t += dur * .8; });
+  } catch (e) { }
+}
+const SFX = { ok: () => beep([659, 880], .12), bad: () => beep([220, 165], .2, 'triangle'), win: () => beep([523, 659, 784, 1046], .14) };
+
+function modal(o) {
+  return new Promise(res => {
+    const card = $('#modalCard');
+    card.innerHTML = '<div style="font-size:46px">' + (o.icon || '💬') + '</div><h3></h3><div class="mb"></div><div class="mbtns"></div>';
+    card.querySelector('h3').textContent = o.title || '';
+    card.querySelector('.mb').innerHTML = o.html || '';
+    (o.buttons || [{ text: 'ตกลง', value: true }]).forEach(b => {
+      const el = document.createElement('button'); el.className = 'btn ' + (b.cls || ''); el.textContent = b.text;
+      el.onclick = () => { $('#modal').classList.remove('open'); res(b.value); };
+      card.querySelector('.mbtns').appendChild(el);
+    });
+    $('#modal').classList.add('open');
+  });
+}
+
+/* ---------- register ---------- */
+(function restore() {
+  try { const s = JSON.parse(lsGet('pre_stu') || 'null'); if (s) { $('#fFirst').value = s.first || ''; $('#fLast').value = s.last || ''; $('#fCls').value = s.cls || ''; $('#fNo').value = s.no || ''; } } catch (e) { }
+})();
+function readForm() {
+  const clean = v => String(v || '').replace(/\s+/g, ' ').trim();
+  const first = clean($('#fFirst').value), last = clean($('#fLast').value), cls = $('#fCls').value, noRaw = clean($('#fNo').value), no = Number(noRaw);
+  const bad = [];
+  if (first.length < 2) bad.push(['#fFirst', 'กรอกชื่อ']);
+  if (last.length < 2) bad.push(['#fLast', 'กรอกนามสกุล']);
+  if (!cls) bad.push(['#fCls', 'เลือกชั้น']);
+  if (!/^\d{1,2}$/.test(noRaw) || no < 1 || no > 50) bad.push(['#fNo', 'กรอกเลขที่ 1–50']);
+  ['#fFirst', '#fLast', '#fCls', '#fNo'].forEach(s => $(s).classList.remove('err'));
+  if (bad.length) { bad.forEach(b => $(b[0]).classList.add('err')); $('#regMsg').textContent = '⚠️ กรุณา' + bad.map(b => b[1]).join(' · '); $(bad[0][0]).focus(); return null; }
+  $('#regMsg').textContent = '';
+  return { first: first, last: last, cls: cls, no: no };
+}
+$('#startBtn').onclick = () => {
+  const stu = readForm(); if (!stu) return;
+  S.stu = stu; lsSet('pre_stu', JSON.stringify(stu));
+  startQuiz();
+};
+['#fFirst', '#fLast', '#fNo'].forEach(s => $(s).addEventListener('keydown', e => { if (e.key === 'Enter') $('#startBtn').click(); }));
+
+/* ---------- quiz ---------- */
+function attemptKey() { return 'pre_att_' + S.stu.cls + '_' + S.stu.no + '_' + S.stu.first + '_' + S.stu.last; }
+function startQuiz() {
+  S.order = shuffle(ITEMS.map((_, i) => i));
+  S.opt = {}; ITEMS.forEach((it, i) => { S.opt[i] = shuffle([0, 1, 2, 3]); });
+  S.idx = 0; S.score = 0; S.picks = {}; S.answered = false;
+  $('#passageBody').innerHTML = PASSAGE.map((p, i) => '<p id="para' + (i + 1) + '"><b>¶' + (i + 1) + '</b>' + esc(p) + '</p>').join('');
+  renderQ(); show('quiz');
+}
+function renderQ() {
+  const qi = S.order[S.idx], it = ITEMS[qi];
+  S.answered = false;
+  $('#qNum').textContent = 'ข้อ ' + (S.idx + 1) + ' / ' + TOTAL;
+  const d = $('#qDiff'); d.className = 'diff ' + it.d; d.textContent = DIFF_TH[it.d];
+  $('#qText').textContent = it.q;
+  const box = $('#opts'); box.innerHTML = '';
+  S.opt[qi].forEach((orig, i) => {
+    const b = document.createElement('button');
+    b.className = 'opt'; b.dataset.orig = orig;
+    b.innerHTML = '<span class="l">' + 'ABCD'[i] + '</span><span class="tx"></span>';
+    b.querySelector('.tx').textContent = it.o[orig];
+    b.onclick = () => choose(orig);
+    box.appendChild(b);
+  });
+  $('#fb').className = 'fb';
+  $('#nextBtn').disabled = true;
+  $('#nextBtn').textContent = S.idx === TOTAL - 1 ? 'ดูผลคะแนน 🏆' : 'ข้อถัดไป ➜';
+  $('#countChip').textContent = (S.idx + 1) + ' / ' + TOTAL;
+  $('#scoreChip').textContent = '⭐ ' + S.score;
+  $('#bar').style.width = (S.idx / TOTAL * 100) + '%';
+  document.querySelectorAll('.passage p.hl').forEach(p => p.classList.remove('hl'));
+  const c = $('#qcard'); c.classList.remove('enter'); void c.offsetWidth; c.classList.add('enter');
+}
+function choose(orig) {
+  if (S.answered) return;
+  S.answered = true;
+  const qi = S.order[S.idx], it = ITEMS[qi], ok = orig === 0;
+  S.picks[qi] = orig;
+  if (ok) S.score++;
+  document.querySelectorAll('#opts .opt').forEach(b => {
+    const o = Number(b.dataset.orig);
+    b.disabled = true;
+    if (o === 0) { b.classList.add('right'); b.insertAdjacentHTML('beforeend', '<span class="mark" style="color:var(--ok)">✔<i> คำตอบที่ถูก</i></span>'); }
+    else if (o === orig) { b.classList.add('wrong'); b.insertAdjacentHTML('beforeend', '<span class="mark" style="color:var(--bad)">✘<i> ที่เลือก</i></span>'); }
+    else b.classList.add('fade');
+  });
+  const fb = $('#fb'); fb.className = 'fb show ' + (ok ? 'ok' : 'no');
+  $('#fbTitle').textContent = ok ? '✅ ถูกต้อง! เก่งมาก' : '❌ ยังไม่ถูก — ดูคำอธิบายแล้วจำไว้นะ';
+  $('#fbText').textContent = it.ex;
+  const para = $('#para' + it.p);
+  if (para) { para.classList.add('hl'); if (window.matchMedia && matchMedia('(min-width:980px)').matches && para.scrollIntoView) para.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+  $('#scoreChip').textContent = '⭐ ' + S.score;
+  $('#bar').style.width = ((S.idx + 1) / TOTAL * 100) + '%';
+  $('#nextBtn').disabled = false;
+  (ok ? SFX.ok : SFX.bad)();
+}
+$('#nextBtn').onclick = () => {
+  if (!S.answered) return;
+  if (S.idx < TOTAL - 1) { S.idx++; renderQ(); window.scrollTo(0, 0); }
+  else finish();
+};
+let pfs = Number(lsGet('pre_pfs')) || 16.5;
+function setPfs(v) { pfs = Math.max(13, Math.min(24, v)); $('#passage').style.setProperty('--pfs', pfs + 'px'); lsSet('pre_pfs', pfs); }
+setPfs(pfs);
+$('#fsMinus').onclick = () => setPfs(pfs - 1.5);
+$('#fsPlus').onclick = () => setPfs(pfs + 1.5);
+$('#pOpen').onclick = () => $('#passage').classList.add('open');
+$('#pClose').onclick = () => $('#passage').classList.remove('open');
+window.addEventListener('beforeunload', e => { if ($('#sc-quiz').classList.contains('active')) { e.preventDefault(); e.returnValue = ''; } });
+
+/* ---------- result ---------- */
+function level(s) {
+  if (s >= EXC) return { k: 'a', stamp: 'EXCELLENT', msg: 'ยอดเยี่ยม! พร้อมสอบจริงแล้ว 🎉' };
+  if (s >= PASS) return { k: 'b', stamp: 'READY', msg: 'ผ่านเกณฑ์ พร้อมสอบ — ทบทวนข้อที่ผิดอีกนิดจะยิ่งมั่นใจ 💪' };
+  return { k: 'c', stamp: 'KEEP PRACTISING', msg: 'ยังไม่ถึงเกณฑ์ (' + PASS + '/' + TOTAL + ') — อ่านคำอธิบายข้อที่ผิด แล้วลองทำอีกครั้งนะ ✊' };
+}
+function byDiff() {
+  const o = { E: [0, 0], M: [0, 0], H: [0, 0] };
+  ITEMS.forEach((it, i) => { o[it.d][1]++; if (S.picks[i] === 0) o[it.d][0]++; });
+  return o;
+}
+function finish() {
+  S.attempt = (Number(lsGet(attemptKey())) || 0) + 1; lsSet(attemptKey(), S.attempt);
+  S.doneAt = Date.now();
+  const st = S.stu, L = level(S.score), D = byDiff();
+  $('#stamp').className = 'stamp ' + L.k; $('#stamp').textContent = L.stamp;
+  $('#resMsg').textContent = L.msg;
+  const rows = [
+    ['ชั้น / เลขที่', st.cls + ' / ' + st.no], ['คะแนน', S.score + ' / ' + TOTAL],
+    ['เกณฑ์ผ่าน', PASS + ' / ' + TOTAL + (S.score >= PASS ? ' · ผ่าน ✅' : ' · ยังไม่ผ่าน')], ['ทำครั้งที่', String(S.attempt)],
+    ['ง่าย · กลาง · ยาก', D.E[0] + '/' + D.E[1] + ' · ' + D.M[0] + '/' + D.M[1] + ' · ' + D.H[0] + '/' + D.H[1]], ['เวลา', thTime(S.doneAt)]
+  ];
+  $('#cap').innerHTML = '<div class="cap-head"><div class="avatar">' + esc(st.first[0]) + '</div><div><small class="muted">PRE-TEST · What Does "Professional" Mean?</small><div style="font-size:22px;font-weight:900">' + esc(st.first + ' ' + st.last) + '</div></div></div>' +
+    '<div class="cap-grid">' + rows.map(r => '<div><small>' + esc(r[0]) + '</small><b>' + esc(r[1]) + '</b></div>').join('') + '</div>';
+  const wrong = S.order.filter(i => S.picks[i] !== 0);
+  $('#review').innerHTML = wrong.length
+    ? '<h3>📚 ทบทวนข้อที่ผิด (' + wrong.length + ' ข้อ)</h3>' + wrong.map(i => { const it = ITEMS[i]; return '<div class="rv"><div class="q">' + esc(it.q) + '</div><div class="a y">✘ ที่ตอบ: ' + esc(it.o[S.picks[i]]) + '</div><div class="a c">✔ คำตอบที่ถูก: ' + esc(it.o[0]) + '</div><div class="e">💡 ' + esc(it.ex) + '</div></div>'; }).join('')
+    : '<h3>🌟 ตอบถูกทุกข้อ ไม่มีข้อที่ต้องทบทวน</h3>';
+  $('#resTotal').textContent = '/ ' + TOTAL;
+  show('res');
+  const arc = $('#arc'), num = $('#resScore'), sc = S.score;
+  arc.style.strokeDashoffset = 326.7;
+  setTimeout(() => { arc.style.strokeDashoffset = 326.7 * (1 - sc / TOTAL); }, 60);
+  const t0 = performance.now();
+  (function cnt(t) { const k = Math.min(1, (t - t0) / 1500); num.textContent = Math.round(sc * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(cnt); else num.textContent = sc; })(t0);
+  setTimeout(() => { if (sc >= PASS) { confetti(); SFX.win(); } else SFX.bad(); }, 900);
+}
+$('#againBtn').onclick = () => startQuiz();
+$('#homeBtn').onclick = () => show('reg');
+$('#saveBtn').onclick = async () => {
+  const st = S.stu, L = level(S.score), D = byDiff();
+  const c = document.createElement('canvas'); c.width = 1080; c.height = 1350;
+  const x = c.getContext && c.getContext('2d');
+  if (!x) { modal({ icon: '📸', title: 'สร้างรูปไม่ได้', html: 'อุปกรณ์นี้สร้างรูปไม่ได้ กรุณาแคปหน้าจอแทน' }); return; }
+  const F = (w, s) => w + ' ' + s + 'px system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Leelawadee UI",Thonburi,sans-serif';
+  const g = x.createLinearGradient(0, 0, 1080, 1350); g.addColorStop(0, '#0a0804'); g.addColorStop(.6, '#1e1608'); g.addColorStop(1, '#33240a');
+  x.fillStyle = g; x.fillRect(0, 0, 1080, 1350);
+  [['rgba(212,175,55,.38)', 900, 160, 460], ['rgba(245,230,168,.18)', 140, 1240, 420]].forEach(b => { const rg = x.createRadialGradient(b[1], b[2], 0, b[1], b[2], b[3]); rg.addColorStop(0, b[0]); rg.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = rg; x.fillRect(0, 0, 1080, 1350); });
+  x.strokeStyle = 'rgba(212,175,55,.75)'; x.lineWidth = 4; x.strokeRect(36, 36, 1008, 1278);
+  x.strokeStyle = 'rgba(245,230,168,.3)'; x.lineWidth = 2; x.strokeRect(54, 54, 972, 1242);
+  const gold = x.createLinearGradient(200, 0, 880, 0); gold.addColorStop(0, '#f9edb8'); gold.addColorStop(.5, '#d4af37'); gold.addColorStop(1, '#f5e6a8');
+  x.textAlign = 'center';
+  x.fillStyle = '#d9c48a'; x.font = F(800, 30); x.fillText('PRE-TEST · BASIC ENGLISH COURSE · ม.6', 540, 140);
+  x.fillStyle = gold; x.font = F(900, 54); x.fillText('What Does "Professional" Mean?', 540, 215);
+  x.fillStyle = '#fbf3dc'; x.font = F(900, 60); x.fillText(st.first + ' ' + st.last, 540, 360);
+  x.fillStyle = '#d9c48a'; x.font = F(700, 36); x.fillText(st.cls + '  ·  เลขที่ ' + st.no, 540, 418);
+  x.fillStyle = 'rgba(0,0,0,.35)'; x.fillRect(140, 490, 800, 330);
+  x.strokeStyle = 'rgba(212,175,55,.6)'; x.lineWidth = 3; x.strokeRect(140, 490, 800, 330);
+  x.font = F(900, 190); const w1 = x.measureText(String(S.score)).width; x.font = F(800, 76); const w2 = x.measureText(' / ' + TOTAL).width;
+  const sx = 540 - (w1 + w2) / 2; x.textAlign = 'left';
+  x.fillStyle = gold; x.font = F(900, 190); x.fillText(String(S.score), sx, 710);
+  x.fillStyle = '#d9c48a'; x.font = F(800, 76); x.fillText(' / ' + TOTAL, sx + w1, 710); x.textAlign = 'center';
+  x.fillStyle = S.score >= PASS ? '#f5e6a8' : '#d98e4a'; x.font = F(900, 46); x.fillText(L.stamp, 540, 785);
+  x.fillStyle = '#fbf3dc'; x.font = F(700, 34);
+  ['เกณฑ์ผ่าน ' + PASS + '/' + TOTAL + (S.score >= PASS ? '  ·  ผ่าน' : '  ·  ยังไม่ผ่าน'),
+   'ง่าย ' + D.E[0] + '/' + D.E[1] + '   ·   ปานกลาง ' + D.M[0] + '/' + D.M[1] + '   ·   ยาก ' + D.H[0] + '/' + D.H[1],
+   'ทำครั้งที่ ' + S.attempt + '   ·   ' + thTime(S.doneAt)].forEach((l, i) => x.fillText(l, 540, 920 + i * 58));
+  x.fillStyle = '#a8956a'; x.font = F(700, 26); x.fillText('By T.OAT · Thanakhan-Oomsin School', 540, 1250);
+  let url; try { url = c.toDataURL('image/png'); } catch (e) { modal({ icon: '📸', title: 'สร้างรูปไม่ได้', html: 'กรุณาแคปหน้าจอแทน' }); return; }
+  const fname = 'pretest_' + st.cls.replace(/[^\d]+/g, '-').replace(/^-/, '') + '_' + st.no + '.png';
+  await modal({ icon: '🖼️', title: 'รูปผล Pre-test พร้อมแล้ว', html: '<img src="' + url + '" alt="ผล pre-test" style="width:100%;border-radius:14px;margin:6px 0 12px"><a class="btn" style="display:inline-block;text-decoration:none" href="' + url + '" download="' + esc(fname) + '">⬇ ดาวน์โหลดรูป</a><p class="dim" style="font-size:13px">📱 iPad: กดค้างที่รูป → “บันทึกลงในรูปภาพ”</p>', buttons: [{ text: 'ปิด', value: true, cls: 'ghost' }] });
+};
+</script>
+</body>
+</html>
